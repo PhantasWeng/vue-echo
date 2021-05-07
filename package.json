@@ -1,0 +1,29 @@
+{
+  "name": "@phantasweng/vue-echo",
+  "version": "0.1.0",
+  "main": "dist/index.esm.js",
+  "description": "Vue Laravel Echo - Simply import Laravel Echo to Vue instance",
+  "scripts": {
+    "build": "rollup -c --environment BUILD:production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "PhantasWeng",
+  "license": "ISC",
+  "dependencies": {
+    "@rollup/plugin-babel": "^5.3.0",
+    "@vue/compiler-sfc": "^3.0.11",
+    "laravel-echo": "^1.10.0",
+    "pusher-js": "^7.0.3",
+    "rollup": "^2.47.0",
+    "rollup-plugin-vue": "^6.0.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PhantasWeng/vue-echo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PhantasWeng/vue-echo/issues"
+  },
+  "homepage": "https://github.com/PhantasWeng/vue-echo#readme"
+}
