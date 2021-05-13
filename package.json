@@ -1,6 +1,6 @@
 {
   "name": "@phantasweng/vue-echo",
-  "version": "0.1.1-dev",
+  "version": "0.1.1",
   "main": "dist/index.esm.js",
   "description": "Vue Laravel Echo - Simply import Laravel Echo to Vue instance",
   "scripts": {
