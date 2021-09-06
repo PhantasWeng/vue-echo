@@ -1,4 +1,4 @@
-(function (exports, LaravelEcho) {
+var vueEcho = (function (exports, LaravelEcho) {
   'use strict';
 
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
@@ -7,6 +7,11 @@
 
   function getChannel(channels, channelName) {
     const target = Object.keys(channels).find(channel => channels[channel].name.replace('private-', '') === channelName);
+
+    if (!target) {
+      throw new Error(`[Echo] Channel name not exist: ${channelName}`);
+    }
+
     return channels[target];
   }
 
@@ -79,6 +84,7 @@
         subscribe: subscribe.bind(laravelEcho),
         unsubscribe: unsubscribe.bind(laravelEcho),
         getChannels: getChannels.bind(laravelEcho),
+        getChannel: getChannel.bind(laravelEcho),
         getEvents: getEvents.bind(laravelEcho)
       });
       Vue.mixin({

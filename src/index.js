@@ -1,4 +1,5 @@
 import LaravelEcho from 'laravel-echo'
+import { getChannel } from './helper'
 import { join, leave, subscribe, unsubscribe, getChannels, getEvents } from './methods'
 window.Pusher = require('pusher-js')
 
@@ -28,6 +29,7 @@ const Plugin = {
       subscribe: subscribe.bind(laravelEcho),
       unsubscribe: unsubscribe.bind(laravelEcho),
       getChannels: getChannels.bind(laravelEcho),
+      getChannel: getChannel.bind(laravelEcho),
       getEvents: getEvents.bind(laravelEcho)
     })
     Vue.mixin({

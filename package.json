@@ -1,6 +1,6 @@
 {
   "name": "@phantasweng/vue-echo",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "main": "dist/index.esm.js",
   "description": "Vue Laravel Echo - Simply import Laravel Echo to Vue instance",
   "scripts": {
@@ -10,14 +10,17 @@
   "author": "PhantasWeng",
   "license": "ISC",
   "dependencies": {
-    "@rollup/plugin-babel": "^5.3.0",
-    "@vue/compiler-sfc": "^3.0.11",
     "laravel-echo": "^1.10.0",
-    "pusher-js": "^7.0.3",
+    "pusher-js": "^7.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.2",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
+    "@vue/compiler-sfc": "^3.0.11",
     "rollup": "^2.47.0",
     "rollup-plugin-vue": "^6.0.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PhantasWeng/vue-echo.git"

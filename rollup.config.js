@@ -11,6 +11,9 @@ export default [
     plugins: [
       vue({ css: false }),
       babel({ babelHelpers: 'bundled' })
+    ],
+    external: [
+      'laravel-echo'
     ]
   },
   // SSR build.
@@ -18,23 +21,35 @@ export default [
     input: './src/index.js',
     output: {
       format: 'cjs',
-      file: 'dist/index.ssr.js'
+      file: 'dist/index.ssr.js',
+      exports: 'named'
     },
     plugins: [
       vue({ css: false, optimizeSSR: true }),
       babel({ babelHelpers: 'bundled' })
+    ],
+    external: [
+      'laravel-echo'
     ]
   },
   // Browser build.
   {
     input: './src/index.js',
     output: {
+      name: 'vueEcho',
+      globals: {
+        'laravel-echo': 'LaravelEcho'
+      },
       format: 'iife',
-      file: 'dist/index.js'
+      file: 'dist/index.js',
+      exports: 'named'
     },
     plugins: [
       vue({ css: false, optimizeSSR: true }),
       babel({ babelHelpers: 'bundled' })
+    ],
+    external: [
+      'laravel-echo'
     ]
   }
 ]

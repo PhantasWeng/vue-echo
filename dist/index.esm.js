@@ -2,6 +2,11 @@ import LaravelEcho from 'laravel-echo';
 
 function getChannel(channels, channelName) {
   const target = Object.keys(channels).find(channel => channels[channel].name.replace('private-', '') === channelName);
+
+  if (!target) {
+    throw new Error(`[Echo] Channel name not exist: ${channelName}`);
+  }
+
   return channels[target];
 }
 
@@ -74,6 +79,7 @@ const Plugin = {
       subscribe: subscribe.bind(laravelEcho),
       unsubscribe: unsubscribe.bind(laravelEcho),
       getChannels: getChannels.bind(laravelEcho),
+      getChannel: getChannel.bind(laravelEcho),
       getEvents: getEvents.bind(laravelEcho)
     });
     Vue.mixin({
