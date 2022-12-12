@@ -1,6 +1,6 @@
 import LaravelEcho from 'laravel-echo'
 import { getChannel } from './helper'
-import { join, leave, subscribe, unsubscribe, getChannels, getEvents } from './methods'
+import { addHookFunction, join, leave, subscribe, unsubscribe, getChannels, getEvents } from './methods'
 window.Pusher = require('pusher-js')
 
 const defaultOptions = {
@@ -24,6 +24,7 @@ const Plugin = {
       ...laravelEcho
     }
     Object.setPrototypeOf(Echo, {
+      onChange: addHookFunction,
       join: join.bind(laravelEcho),
       leave: leave.bind(laravelEcho),
       subscribe: subscribe.bind(laravelEcho),

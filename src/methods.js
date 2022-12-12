@@ -1,15 +1,27 @@
 import { getChannel } from './helper'
 
+const hooks = []
+
+export function addHookFunction (func) {
+  hooks.push(func)
+}
+
+export function onChange (...params) {
+  hooks.forEach(func => func(...params))
+}
+
 export function join (channelName, options) {
   const { isPrivate } = options
   console.debug('[Echo] joinChannel -', isPrivate ? 'private-' + channelName : channelName)
   isPrivate ? this.private(channelName) : this.channel(channelName)
+  onChange()
 }
 
 export function leave (channelName) {
   const targetChannel = getChannel(this.connector.channels, channelName)
   console.debug('[Echo] leaveChannel -', targetChannel.name)
   this.leave(channelName)
+  onChange()
 }
 
 export function subscribe (channelName, eventName, callback) {
@@ -19,6 +31,7 @@ export function subscribe (channelName, eventName, callback) {
   })
 
   console.debug('[Echo] subscribeEvent -', targetChannel.name, eventName)
+  onChange()
 }
 
 export function unsubscribe (channelName, eventName) {
@@ -26,6 +39,7 @@ export function unsubscribe (channelName, eventName) {
   targetChannel.stopListening(eventName)
 
   console.debug('[Echo] unsubscribeEvent -', targetChannel.name, eventName)
+  onChange()
 }
 
 export function getChannels () {
