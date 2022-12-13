@@ -77,3 +77,4 @@ this._vm.$echo.join(...)
 | unsubscribe | 取消訂閱 Event       | function `(channelName, eventName)`                                  |
 | getChannels | 取得已加入 Channels  | function                                                             |
 | getEvents   | 取得已訂閱 Events    | function 取得全部  OR    function  (channelName)   取得特定 Channel     |
+| onChange    | Channel, Event 變動 | 傳入 function，當變動時執行 Hook                                        |
