@@ -31,7 +31,7 @@ Vue.use(VueEcho, {
   forceTLS: false,
   disableStats: true,
   authEndpoint: process.env.VUE_APP_ECHO_AUTH,
-  auth: { headers: { Authorization: 'Bearer ' + Cookies.get('owlpay_access_token') } }
+  auth: { headers: { Authorization: 'Bearer ' + Cookies.get('my_access_token') } }
 }, store)
 
 ```
