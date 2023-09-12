@@ -8,7 +8,7 @@ var vueEcho = (function (exports, LaravelEcho) {
   function getChannel(channels, channelName) {
     const target = Object.keys(channels).find(channel => channels[channel].name.replace('private-', '') === channelName);
 
-    if (!target) {
+    if (!target && this.options.debug) {
       throw new Error(`[Echo] Channel name not exist: ${channelName}`);
     }
 
@@ -26,28 +26,28 @@ var vueEcho = (function (exports, LaravelEcho) {
     const {
       isPrivate
     } = options;
-    console.debug('[Echo] joinChannel -', isPrivate ? 'private-' + channelName : channelName);
+    if (this.options.debug) console.debug('[Echo] joinChannel -', isPrivate ? 'private-' + channelName : channelName);
     isPrivate ? this.private(channelName) : this.channel(channelName);
     onChange();
   }
   function leave(channelName) {
-    const targetChannel = getChannel(this.connector.channels, channelName);
-    console.debug('[Echo] leaveChannel -', targetChannel.name);
+    const targetChannel = getChannel.bind(this)(this.connector.channels, channelName);
+    if (this.options.debug) console.debug('[Echo] leaveChannel -', targetChannel.name);
     this.leave(channelName);
     onChange();
   }
   function subscribe(channelName, eventName, callback) {
-    const targetChannel = getChannel(this.connector.channels, channelName);
+    const targetChannel = getChannel.bind(this)(this.connector.channels, channelName);
     targetChannel.listen(eventName, res => {
       if (callback) callback(res);
     });
-    console.debug('[Echo] subscribeEvent -', targetChannel.name, eventName);
+    if (this.options.debug) console.debug('[Echo] subscribeEvent -', targetChannel.name, eventName);
     onChange();
   }
   function unsubscribe(channelName, eventName) {
-    const targetChannel = getChannel(this.connector.channels, channelName);
+    const targetChannel = getChannel.bind(this)(this.connector.channels, channelName);
     targetChannel.stopListening(eventName);
-    console.debug('[Echo] unsubscribeEvent -', targetChannel.name, eventName);
+    if (this.options.debug) console.debug('[Echo] unsubscribeEvent -', targetChannel.name, eventName);
     onChange();
   }
   function getChannels() {
